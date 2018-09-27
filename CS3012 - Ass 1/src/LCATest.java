@@ -5,8 +5,32 @@ import org.junit.Test;
 public class LCATest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testEmpty()
+	{
+		
 	}
-
+	
+	@Test
+	public void testOneNode()
+	{
+		
+	}
+	
+	@Test
+	public void testMultipleNodes()
+	{
+		
+	}
+	
+	@Test
+	public void testSameValue()
+	{
+		
+	}
+	
+	@Test
+	public void testWhenAncestorOfOther()
+	{
+		
+	}
 }
