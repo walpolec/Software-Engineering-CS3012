@@ -12,7 +12,7 @@ class Node
 
 public class LCA
 {
-	 Node lowestCommonAncestor(Node node, int no1, int no2)  
+	 static Node lowestCommonAncestor(Node node, int no1, int no2)  
 	 { 
 		 if (node == null) 
 		 {
