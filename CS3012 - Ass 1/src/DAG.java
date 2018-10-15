@@ -35,4 +35,58 @@ public class DAG
 		indegree[w]++;
 		edges++;
 	}
+    
+    public int vertices()
+    {
+		return vertices;
+	}
+    
+    public int edges() 
+    {
+		return edges;
+	}
+
+    public Iterable<Integer> adj(int vertex)
+    {
+		validateVertex(vertex);
+		return adjacencyList[vertex];
+	}
+    
+    public int outdegree(int vertex)
+    {
+        validateVertex(vertex);
+        return adjacencyList[vertex].size();
+    }
+    
+    public int indegree(int v) {
+        validateVertex(v);
+        return indegree[v];
+    }
+    
+    public DAG reverse()
+    {
+        DAG reverse = new DAG(vertices);
+        for (int v = 0; v < vertices; v++) {
+            for (int w : adj(v)) {
+                reverse.addEdge(w, v);
+            }
+        }
+        return reverse;
+    }
+    
+    public String toString() 
+    {
+        StringBuilder s = new StringBuilder();
+        s.append(vertices + " vertices, " + edges + " edges " + System.getProperty("line.separator"));
+        for (int v = 0; v < vertices; v++)
+        {
+            s.append(String.format("%d: ", v));
+            for (int w : adjacencyList[v])
+            {
+                s.append(String.format("%d ", w));
+            }
+            s.append(System.getProperty("line.separator"));
+        }
+        return s.toString();
+    }
 }
