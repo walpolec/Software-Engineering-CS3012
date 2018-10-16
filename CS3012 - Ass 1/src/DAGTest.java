@@ -92,4 +92,16 @@ public class DAGTest {
 	{
 		
 	}
+	
+	@Test
+	public void testIsDag()
+	{
+		
+	}
+	
+	@Test
+	public void testAcyclic()
+	{
+		
+	}
 }
