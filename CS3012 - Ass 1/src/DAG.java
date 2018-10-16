@@ -6,6 +6,9 @@ public class DAG
     private int edges;                 
     private ArrayList<Integer>[] adjacencyList;    
     private int[] indegree;
+    public boolean[] marked;
+    public boolean[] stack;
+    public boolean isDAG;
 	
     public DAG(int numVertices) 
     {
@@ -18,6 +21,8 @@ public class DAG
 		{
 			adjacencyList[v] = new ArrayList<Integer>();
 		}
+		marked = new boolean[numVertices];
+		stack = new boolean[numVertices];
     }
     
     private void validateVertex(int vertex)
@@ -89,4 +94,29 @@ public class DAG
         }
         return s.toString();
     }
+    
+    public boolean isDag()
+	{
+		return isDAG;	
+	}
+    
+    private void acyclic(int v)
+	{
+		stack[v] =true; 
+		marked[v] = true;
+		for (int w : adj(v))
+		{
+			if(!marked[w]) 
+			{
+				acyclic(w);
+			}
+			else if (stack[w])
+			{
+				isDAG = false;
+				return;
+			}
+		}
+		stack[v] = false;
+		isDAG = true;
+	}
 }
