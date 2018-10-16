@@ -31,13 +31,19 @@ public class DAGTest {
 	@Test
 	public void testVertices()
 	{
-		
+		DAG graph = new DAG(10);
+		assertEquals(10, graph.vertices());
 	}
 	
 	@Test
 	public void testEdges()
 	{
-		
+		DAG graph = new DAG(10);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		graph.addEdge(4, 5);
+		assertEquals(4, graph.edges());
 	}
 	
 	@Test
