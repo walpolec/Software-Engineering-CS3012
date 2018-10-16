@@ -54,13 +54,31 @@ public class DAGTest {
 	@Test
 	public void testOutDegree()
 	{
-		
+		DAG graph = new DAG(5);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(1, 3);
+		assertEquals(2, graph.outdegree(0));
+		assertEquals(1, graph.outdegree(1));
+		assertEquals(1, graph.outdegree(2));
+		assertEquals(0, graph.outdegree(3));
+		assertEquals(0, graph.outdegree(4));
 	}
 	
 	@Test
 	public void testInDegree()
 	{
-		
+		DAG graph = new DAG(5);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(1, 3);
+		assertEquals(0, graph.indegree(0));
+		assertEquals(1, graph.indegree(1));
+		assertEquals(1, graph.indegree(2));
+		assertEquals(2, graph.indegree(3));
+		assertEquals(0, graph.indegree(4));
 	}
 	
 	@Test
