@@ -37,6 +37,12 @@ public class DAGTest {
 	}
 	
 	@Test (expected=Exception.class)
+	public void testExceptionConstructor()
+	{
+		DAG graph = new DAG(-5);	
+	}
+	
+	@Test (expected=Exception.class)
 	public void testValidateVertex()
 	{
 		DAG graph = new DAG(5);
@@ -53,7 +59,14 @@ public class DAGTest {
 	@Test
 	public void testAddEdge()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		assertEquals(6, graph.edges());
 	}
 
 	@Test
@@ -77,7 +90,23 @@ public class DAGTest {
 	@Test
 	public void testAdj()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		String adj0 = "[1, 2]";
+		assertEquals(adj0, graph.adj(0).toString());
+		String adj1 = "[3]";
+		assertEquals(adj1, graph.adj(1).toString());
+		String adj2 = "[3, 4]";
+		assertEquals(adj2, graph.adj(2).toString());
+		String adj3 = "[4]";
+		assertEquals(adj3, graph.adj(3).toString());
+		String adj4 = "[]";
+		assertEquals(adj4, graph.adj(4).toString());
 	}
 	@Test
 	public void testOutDegree()
