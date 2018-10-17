@@ -25,7 +25,7 @@ public class DAG
 		stack = new boolean[numVertices];
     }
     
-    private void validateVertex(int vertex)
+    public void validateVertex(int vertex)
     {
 		if (vertex < 0 || vertex >= vertices)
 			throw new IllegalArgumentException("vertex " + vertex + " is not between 0 and " + (vertices-1));

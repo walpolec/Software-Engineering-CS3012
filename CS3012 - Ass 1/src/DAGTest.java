@@ -13,13 +13,41 @@ public class DAGTest {
 	@Test
 	public void testDAG()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		assertEquals(0, graph.indegree(0));
+		assertEquals(2, graph.outdegree(0));
+		assertEquals(1, graph.indegree(1));
+		assertEquals(1, graph.outdegree(1));
+		assertEquals(1, graph.indegree(2));
+		assertEquals(2, graph.outdegree(2));
+		assertEquals(2, graph.indegree(3));
+		assertEquals(1, graph.outdegree(3));
+		assertEquals(2, graph.indegree(4));
+		assertEquals(0, graph.outdegree(4));
+		assertEquals(6, graph.edges());
+		assertEquals(5, graph.vertices());
+		String adj = "[3, 4]";
+		assertEquals(adj, graph.adj(2).toString());
 	}
 	
-	@Test
+	@Test (expected=Exception.class)
 	public void testValidateVertex()
 	{
-		
+		DAG graph = new DAG(5);
+		graph.validateVertex(-1);
+	}
+	
+	@Test (expected=Exception.class)
+	public void testValidateVertex2()
+	{
+		DAG graph = new DAG(5);
+		graph.validateVertex(10);
 	}
 	
 	@Test
