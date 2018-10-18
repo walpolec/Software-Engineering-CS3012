@@ -105,7 +105,7 @@ public class DAG
 		return isDAG;	
 	}
     
-    private void acyclic(int v)
+    public void acyclic(int v)
 	{
 		stack[v] =true; 
 		marked[v] = true;

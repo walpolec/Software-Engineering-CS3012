@@ -159,7 +159,22 @@ public class DAGTest {
 	@Test
 	public void testReverse()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		DAG graphReverse = graph.reverse();
+		assertEquals(graphReverse.vertices(),graph.vertices());
+		assertEquals(graphReverse.edges(),graph.edges());
+		assertEquals(graphReverse.indegree(3),graph.outdegree(3));
+		assertEquals(graphReverse.indegree(2),graph.outdegree(2));
+		DAG emptyGraph = new DAG(25);
+		DAG emptyGraphReverse = emptyGraph.reverse();
+		assertEquals(emptyGraph.vertices(),emptyGraphReverse.vertices());
+		assertEquals(emptyGraph.edges(),emptyGraphReverse.edges());
 	}
 	
 	@Test
@@ -177,7 +192,25 @@ public class DAGTest {
 	@Test
 	public void testAcyclic()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		graph.acyclic(0);
+		assertTrue(graph.isDAG);
+		DAG graph2 = new DAG(5);	
+		graph2.addEdge(0, 1);
+		graph2.addEdge(0, 2);
+		graph2.addEdge(1, 3);
+		graph2.addEdge(2, 3);
+		graph2.addEdge(2, 4);
+		graph2.addEdge(3, 4);
+		graph2.addEdge(3, 2);
+		graph2.acyclic(2);
+		assertFalse(graph2.isDAG);
 	}
 	
 	@Test
