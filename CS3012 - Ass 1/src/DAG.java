@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class DAG 
 {
@@ -23,6 +25,7 @@ public class DAG
 		}
 		marked = new boolean[numVertices];
 		stack = new boolean[numVertices];
+		isDAG = true;
     }
     
     public void validateVertex(int vertex)
@@ -71,8 +74,10 @@ public class DAG
     public DAG reverse()
     {
         DAG reverse = new DAG(vertices);
-        for (int v = 0; v < vertices; v++) {
-            for (int w : adj(v)) {
+        for (int v = 0; v < vertices; v++)
+        {
+            for (int w : adj(v))
+            {
                 reverse.addEdge(w, v);
             }
         }
@@ -117,6 +122,40 @@ public class DAG
 			}
 		}
 		stack[v] = false;
-		isDAG = true;
+	}
+    
+    public void isAcyclic()
+	{
+		for(int i=0; i<vertices()&& isDAG; i++)
+		{
+			stack = new boolean[vertices];
+			marked= new boolean[vertices];
+			acyclic(i);
+		}
+	}
+    
+    public ArrayList<Integer> BFS(int s)
+	{
+		ArrayList<Integer> order = new ArrayList<Integer>();
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		boolean visited[] = new boolean[vertices]; 
+		visited[s] = true;
+		queue.add(s);
+		while(queue.size() != 0)
+		{
+			s = queue.poll(); 
+			order.add(s);
+			Iterator<Integer> i = adjacencyList[s].listIterator();
+			while(i.hasNext())
+			{
+				int n = i.next();
+				if(!visited[n])
+				{
+					visited[n] = true;
+					queue.add(n);
+				}
+			}
+		}
+		return order;
 	}
 }
