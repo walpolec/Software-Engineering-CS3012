@@ -158,4 +158,39 @@ public class DAG
 		}
 		return order;
 	}
+    
+    public int LCADAG(int v, int w)
+	{
+		isAcyclic();
+		if(!isDAG)
+		{
+			return -1;
+		}
+		validateVertex(v);
+		validateVertex(w);
+		if(edges==0)
+		{
+			return -1;
+		}
+		DAG  reversed = this.reverse();
+		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();      
+		ArrayList<Integer> arrayv = reversed.BFS(v);
+		ArrayList<Integer> arrayw = reversed.BFS(w);
+		boolean haveLCA =false;
+		for(int i = 0; i< arrayv.size(); i++)
+		{
+			for(int t = 0; t< arrayw.size(); t++)
+			{		
+				if(arrayv.get(i) == arrayw.get(t))
+				{ 
+					commonAncestors.add(arrayv.get(i));	
+					haveLCA = true;
+				}
+			}
+		}
+		if(haveLCA)
+			return commonAncestors.get(0);
+		else
+			return -1;
+	}
 }
