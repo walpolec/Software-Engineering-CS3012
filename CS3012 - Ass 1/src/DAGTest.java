@@ -7,7 +7,25 @@ public class DAGTest {
 	@Test
 	public void testLCA() 
 	{
-		
+		DAG graph = new DAG(10);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(0, 3);
+		graph.addEdge(1, 4);
+		graph.addEdge(2, 4);
+		graph.addEdge(2, 5);
+		graph.addEdge(3, 5);
+		graph.addEdge(4, 6);
+		graph.addEdge(4, 7);
+		graph.addEdge(6, 9);
+		graph.addEdge(5, 6);
+		graph.addEdge(5, 8);
+		graph.addEdge(7, 9);
+		graph.addEdge(8, 9);
+		assertEquals(0,graph.LCADAG(1,3));
+		assertEquals(2, graph.LCADAG(7, 8));
+		assertEquals(3, graph.LCADAG(3, 8));
+		assertEquals(3, graph.LCADAG(3, 3));
 	}
 	
 	@Test
