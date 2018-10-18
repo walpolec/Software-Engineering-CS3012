@@ -161,4 +161,16 @@ public class DAGTest {
 	{
 		
 	}
+	
+	@Test
+	public void testIsAcylic()
+	{
+		
+	}
+	
+	@Test
+	public void testBFS()
+	{
+		
+	}
 }
