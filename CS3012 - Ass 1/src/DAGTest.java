@@ -29,6 +29,38 @@ public class DAGTest {
 	}
 	
 	@Test
+	public void testWhenNoAncestors()
+	{
+		DAG graph = new DAG(10);
+		//empty graph
+		assertEquals(-1,graph.LCADAG(1,2));
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(0, 3);
+		graph.addEdge(1, 4);
+		graph.addEdge(2, 4);
+		graph.addEdge(2, 5);
+		graph.addEdge(3, 5);
+		graph.addEdge(4, 6);
+		graph.addEdge(4, 7);
+		graph.addEdge(5, 6);
+		graph.addEdge(5, 8);
+		//non connected vertex
+		assertEquals(-1,graph.LCADAG(9,8));
+		DAG graph2 = new DAG(5);	
+		graph2.addEdge(0, 1);
+		graph2.addEdge(0, 2);
+		graph2.addEdge(1, 3);
+		graph2.addEdge(2, 3);
+		graph2.addEdge(2, 4);
+		graph2.addEdge(3, 4);
+		graph2.addEdge(3, 2);
+		graph2.isAcyclic();
+		//not acyclic
+		assertEquals(-1,graph2.LCADAG(2,3));	
+	}
+	
+	@Test
 	public void testDAG()
 	{
 		DAG graph = new DAG(5);	
