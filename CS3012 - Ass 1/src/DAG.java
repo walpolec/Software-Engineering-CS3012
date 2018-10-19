@@ -84,22 +84,6 @@ public class DAG
         return reverse;
     }
     
-    public String toString() 
-    {
-        StringBuilder s = new StringBuilder();
-        s.append(vertices + " vertices, " + edges + " edges " + System.getProperty("line.separator"));
-        for (int v = 0; v < vertices; v++)
-        {
-            s.append(String.format("%d: ", v));
-            for (int w : adjacencyList[v])
-            {
-                s.append(String.format("%d ", w));
-            }
-            s.append(System.getProperty("line.separator"));
-        }
-        return s.toString();
-    }
-    
     public boolean isDag()
 	{
 		return isDAG;	

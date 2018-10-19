@@ -178,15 +178,27 @@ public class DAGTest {
 	}
 	
 	@Test
-	public void testToString()
-	{
-		
-	}
-	
-	@Test
 	public void testIsDag()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		graph.acyclic(0);
+		assertTrue(graph.isDag());
+		DAG graph2 = new DAG(5);	
+		graph2.addEdge(0, 1);
+		graph2.addEdge(0, 2);
+		graph2.addEdge(1, 3);
+		graph2.addEdge(2, 3);
+		graph2.addEdge(2, 4);
+		graph2.addEdge(3, 4);
+		graph2.addEdge(3, 2);
+		graph2.acyclic(2);
+		assertFalse(graph2.isDag());
 	}
 	
 	@Test
@@ -216,12 +228,25 @@ public class DAGTest {
 	@Test
 	public void testIsAcylic()
 	{
-		
+		DAG graph = new DAG(5);	
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		graph.isAcyclic();
+		assertTrue(graph.isDAG);
+		DAG graph2 = new DAG(5);	
+		graph2.addEdge(0, 1);
+		graph2.addEdge(0, 2);
+		graph2.addEdge(1, 3);
+		graph2.addEdge(2, 3);
+		graph2.addEdge(2, 4);
+		graph2.addEdge(3, 4);
+		graph2.addEdge(3, 2);
+		graph2.isAcyclic();
+		assertFalse(graph2.isDAG);
 	}
 	
-	@Test
-	public void testBFS()
-	{
-		
-	}
 }
